@@ -1,0 +1,24 @@
+<table class="table table-striped table-hover ">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Effect</th>
+            <th>Ingredients</th>
+            <th>View</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>   
+    </thead>
+    <tbody>
+        {{#each potions as |potion|}}
+        <tr>
+            <td>{{potion.name}}</td>
+            <td>{{potion.effect}}</td>
+            <td>{{#each potion.ingredients}}{{name}}{{#if @last}}{{else}}, {{/if}}{{/each}}</td>
+            <td>{{link-to "View" "potions.view" potion class="btn btn-default btn-sm"}}</td>
+            <td>{{link-to "Edit" "potions.edit" potion class="btn btn-default btn-sm"}}</td>
+            <td><button {{action "deletePotion" potion}} class="btn btn-danger btn-sm">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>

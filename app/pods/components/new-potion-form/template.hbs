@@ -1,0 +1,34 @@
+<form class="form-horizontal" method="post">
+    <fieldset>
+        <div class="form-group {{if validationErrors.name "has-error"}}">
+            <label for="name" class="col-lg-2 control-label">Name</label>
+            <div class="col-lg-10">
+                <input class="form-control" id="name" name="name" placeholder="e.g. Polyjuice Potion" type="text" value="{{data.name}}">
+                    <span class="help-block">{{validationErrors.name}}</span>
+            </div>
+        </div>
+        <div class="form-group {{if validationErrors.effect "has-error"}}">
+            <label for="effect" class="col-lg-2 control-label">Effect</label>
+            <div class="col-lg-10">
+                <input class="form-control" id="effect" name="effect" type="text" value="{{data.effect}}">
+                    <span class="help-block">{{validationErrors.effect}}</span>
+            </div>
+        </div>
+        
+        <div class="form-group {{if validationErrors.ingredients "has-error"}}">
+            <label for="ingredients" class="col-lg-2 control-label">Ingredients</label>
+            <div class="col-lg-10">
+                <textarea class="form-control" rows="3" id="ingredients" name="ingredients"  placeholder="e.g. Boomslang Skin, Bezoar, Unicorn Horn">{{#each data.ingredients as |ingredient|}} {{ingredient.name}},{{/each}}</textarea>
+                <span class="help-block">List the required ingredients continuously, separated by a comma, e.g. Boomslang Skin, Bezoar, Unicorn Horn</span>
+                <span class="help-block">{{validationErrors.ingredients}}</span>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2">
+                <button type="reset" class="btn btn-default">Cancel</button>
+                <button {{action "submit"}} class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </fieldset>
+</form>

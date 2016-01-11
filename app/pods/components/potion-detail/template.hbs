@@ -1,0 +1,12 @@
+<dl class="dl-horizontal">
+  <dt>ID</dt>
+  <dd>{{potion.id}}</dd>
+  <dt>Name</dt>
+  <dd>{{potion.name}}</dd>
+  <dt>Effect</dt>
+  <dd>{{potion.effect}}</dd>
+  <dt>Ingredients</dt>
+  <dd>{{#each potion.ingredients as |ingredient|}}
+        {{ingredient.name}}{{#if @last}}{{else}}, {{/if}}
+      {{/each}}</dd>
+</dl>

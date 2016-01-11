@@ -1,0 +1,16 @@
+{{#each messages as |message|}}
+<div class="alert alert-dismissible alert-success">
+    <button type="button" class="close" data-dismiss="alert">×</button>
+    {{message}}
+</div>
+{{/each}}
+
+<div class="page-header">
+    <h1>List of Potions</h1>
+</div>
+
+{{potion-list potions=model}}
+
+<p>
+    <button {{action "showModal" "new-potion-modal" "potions.list"}} class="btn btn-default">Add new potion</button>
+</p>
