@@ -76,11 +76,11 @@ Funkcionális követelmények:
 
 1. Adatmodell
 
-    ![Adatmodell](docs/images/adatmodell_gaktaai.png)
+    ![Adatmodell](docs/images/adatmodell.png)
 
 2. Adatbázisterv
 
-    ![Adatbázisterv](docs/images/adatmodell_gaktaai_database.png)
+    ![Adatbázisterv](docs/images/adatmodell_database.png)
 
 #3. Implementáció
 
