@@ -16,7 +16,15 @@ Az általam választott téma a "Receptek és hozzávalók" téma átdolgozása 
 
 Webes vastagkliens - *egyoldalas webes alkalmazás*
 
-REST API végpont - *...*
+REST API végpont - *Representational State Transfer (REST) Application Programming Interface (API)*, jellemzői:
+
+1. Adathozzáférés HTTP protokollon keresztül
+
+2. CRUD műveletek adatforráson modelleken
+
+3. HTTP metódusok segítségével (GET, POST, DELETE, PUT/PATCH)
+ 
+4. (Általában) JSON formátumú kérések/válaszok
 
 ##1.3. Használatieset-modell, funkcionális követelmények
 
@@ -32,15 +40,19 @@ Egy kifejtett használati eset folyamatábrája:
 Funkcionális követelmények:
 
 1. lehessen beküldeni egy bájital receptet --> recept beküldése,
+
 2. kapjon a felhasználó visszajelzést, hogy a beküldött receptek valóban bekerültek az adatbázisba --> receptek listázása,
+
 3. lehessen egy esetleges hiba észrevételekor javítani a receptet --> receptek szerkesztése
+
 4. lehessen törölni egy receptet,
+
 5. a főoldalon az alkalmazás ismertetése jelenjen meg.
 
-
-3. Nem funkcionális követelmények:
+Nem funkcionális követelmények:
 
 1. felhasználóbarát, ergonomikus elrendezés és kinézet,
+
 2. gyors működés.
 
 #2. Tervezés
@@ -59,8 +71,8 @@ Funkcionális követelmények:
 
 - / : főoldal
 - /potions/list : receptlista
-- /potions/view/:potin_id : recept adatai
-- /potions/edit/:potin_id : recept adatainak módosítása
+- /potions/view/:potion_id : recept adatai
+- /potions/edit/:potion_id : recept adatainak módosítása
 
 ##2.2. Felhasználóifelület-modell
 
@@ -120,7 +132,7 @@ Kliensoldalon az "app" mappa tartalmazza a kliensoldalhoz szükséges összes f�
 
 A "docs" mappa "images" almappája tárolja a jelen dokumentációban szereplő képeket, míg a "dist/assets" mappa a HTML tartalom megjelenítéséhez szükséges bootstrap, bootswatch és js/jquery fájlokat tartalmazza.
 
-Szerveroldalon a ".db" mappa az adatbázis tárolására hivatott, míg a gyökérmappában lévő server.js hivatott az adatbáziskezelés elvégzésére.
+Szerveroldalon a ".db" mappa az adatbázis tárolására hivatott, míg a gyökérmappában lévő server.js hivatott az adatbáziskezelő szerver létrehozására.
 
 
 #4. Tesztelés
@@ -128,13 +140,13 @@ Szerveroldalon a ".db" mappa az adatbázis tárolására hivatott, míg a gyök�
 A tesztelés során kézzel teszteltem mindent, mivel kevés funkciója van az elkészített weboldalnak, és nem okozott nagy gondot vagy időkiesést.
 Tesztelt esetek:
 
-1. új recept létrehozása
+1. új recept létrehozása: az "Add new potion" gombra való kattintásra az elvártnak megfelelően felugrik a "new-potion-form" modal ablak, amely bekéri az adatokat. Hiányos adatok esetén jelzi a problémát, és nem enged új receptet hozzáadni, amíg a problémát meg nem oldjuk. Ezután a "Submit" gomb lenyomása után a modal ablak bezárul, a létrehozott bájital recept pedig megjelenik a listázó oldalon.
 
-2. recept szerkesztése
+2. recept szerkesztése: a listázóoldal megfelelő sorában az "Edit" gombra kattintva az elvártaknak megfelelően megjelenik a "new-potion-form" modal, amelybe már be vannak töltve a recept adatai. Módosítani lehet mindhárom mezőt, csak arra kell figyelni, hogy (handlebars inkompatibilitás miatt) a hozzávalók listájának végén szereplő ','-t töröljük le a módosítás véglegesítése előtt.
 
-3. recept megtekintése (ID-t is mutatja)
+3. recept megtekintése (ID-t is mutatja): a listázóoldal megfelelő sorában a "View" gombra kattintva az elvártaknak megfelelően megjelenik a megtekinteni kívánt recept minden adata: ID, name, effect és ingredients (sorban: ID, név, a bájital hatása és hozzávalói). A "Back" gombra kattintva visszakerülünk a listázóoldalra.
 
-4. recept törtlése az adatbázisból.
+4. recept törtlése az adatbázisból: a listázóoldal megfelelő sorában a "Delete" gombra kattintva az elvártaknak megfelelően törlődik az adatbázisból is a megjelenítési listából is a törölni kívánt elem.
 
 #5. Felhasználói dokumentáció
 
@@ -158,4 +170,4 @@ Ha üres a táblázat, a felhasználó hozzáadhat új receptet, de mást nem tu
 
 3. Ingredients: a bájital hozzávalói, vesszővel elválasztva pl. Fluxweed, Knotgrass, Lacewing Flies, Leeches
 
-Minden egyes, a felületen végzett változtatás eredménye megjelenik a táblázatban, így a felhasználó valós idejű visszaigazolást kap arról, ami a háttérben az adatbázisban történik.
+Minden egyes, a felületen végzett változtatás eredménye megjelenik a táblázatban, így a felhasználó azonnali visszaigazolást kap arról, ami a háttérben az adatbázisban történik.
